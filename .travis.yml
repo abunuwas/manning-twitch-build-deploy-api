@@ -1,0 +1,15 @@
+language: python
+python: '3.9'
+node_js: 10.16.3
+before_install:
+- npm install dredd@14.0.0 --global
+- pipenv install --dev
+script:
+- dredd oas.yaml http://127.0.0.1:8000 --hookfiles=./hooks.py --language=python --server
+  "uvicorn todo.server:server"
+deploy:
+  provider: heroku
+  api_key:
+    secure: ahmIH6olEY3uinCVTVnOwxSj71cTaJiNTk7IXlM5ccuuPVmJ5uREh6ZCrgzVGpKCcMzxEP2z5+3so77/yJsOwAuRRzoaWMMoh1CwPTwH9uuftqOVyw6y7NbGE4x029alG6YIQJVUWMUj/IryvRT9GqoJQo+7huNTR/I5zvy+czuFf82RniGlBLfBZ5sCBW/6J+R1N7s+pyizRD726QzZgncPY5dylfR1zvHSHDB9wQXplYuXNs/r91Gq7P8QrM/bkSFMK5BjHjDz/mVzGrkBVF3xSr+nuomohjPDhirDK0ibF0CtcnFA5QkMoqrFcuigEJ587nYmfkpGv5Mvydwgx7F2lSesRTzikq4XCiBs/pyO8MYQhykuGP8db+4uk0JVxYhw2BFudiMvJatiCIqsLBz1ECnxQZelFwhdCGD/M9A9SkL6uX0yQwXZq5ljvadK4wP5BTOAO9HCg/+9CdZ8gUEp4eetIs2vFxdPOLFhTuxbVFPszfo0om6euUrP3kmcgORCh3m8/5oCpU0q3pIBhTgmM4oia4QNgZFuGvLmib7N/KP1LMi4UTGSAdUOQIsl2MMq5IM+niKSkEcmfS0joqj5WgTvezrJIOOkxs/OGRKTGX5A24nqsFKW3ADoDPAbVGHenCRJkyXfnqHmHWewZYk7vRUDoiMSQDn/2GPR5B8=
+  app:
+    master: manning-twitch
