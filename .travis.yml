@@ -6,7 +6,7 @@ before_install:
 - pipenv install --dev
 script:
 - dredd oas.yaml http://127.0.0.1:8000 --hookfiles=./hooks.py --language=python --server
-  "uvicorn app.app:app"
+  "uvicorn todo.server:server"
 deploy:
   provider: heroku
   api_key:
