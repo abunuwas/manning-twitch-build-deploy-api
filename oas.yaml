@@ -15,9 +15,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GetTaskSchema'
+                $ref: '#/components/schemas/ListTasksSchema'
 
     post:
       summary: Creates a task
@@ -35,10 +33,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetTaskSchema'
 
-  /todo/{item_id}:
+  /todo/{task_id}:
     parameters:
       - in: path
-        name: item_id
+        name: task_id
         required: true
         schema:
           type: string
@@ -57,7 +55,7 @@ paths:
           $ref: '#/components/responses/NotFound'
 
     put:
-      summary: Updates an existing task
+      summary: Replaces an existing task
       requestBody:
         required: true
         content:
@@ -135,8 +133,8 @@ components:
           type: string
           format: uuid
         created:
-          type: integer
-          description: Date in the form of UNIX timestmap
+          type: string
+          format: date-time
         priority:
           type: string
           enum:
@@ -152,3 +150,12 @@ components:
             - completed
         task:
           type: string
+    ListTasksSchema:
+      type: object
+      required:
+        - tasks
+      properties:
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetTaskSchema'
