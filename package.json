@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@stoplight/prism-cli": "^4.1.2",
+    "dredd": "^14.0.0"
+  }
+}
