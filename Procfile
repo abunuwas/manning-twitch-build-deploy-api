@@ -1,1 +1,1 @@
-web: uvicorn app.app:app --host 0.0.0.0 --port $PORT
+web: uvicorn todo.server:server --host 0.0.0.0 --port $PORT
